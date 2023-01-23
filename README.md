@@ -5,7 +5,7 @@ Features --->
 - Login/Logout using google authentication
 - Recieves data from tmdb api
 - Payment ready using the stripe payment processor
-- Users can have monthlu recurring subscription
+- Users can have monthly recurring subscription
 - Using Firestore database by firebase
 - Using Stripe payment webhooks to autoamtically keep track user subscription and their records in the database
 
