@@ -1,11 +1,11 @@
 import React from 'react'
 import "./HomeScreen.css"
 
-import requests from './Requests'
+import requests from '../Requests'
 
-import Navbar from './components/Navbar'
-import Banner from './components/Banner'
-import Row from './components/Row'
+import Navbar from '../components/Navbar'
+import Banner from '../components/Banner'
+import Row from '../components/Row'
 
 
 function HomeScreen() {
