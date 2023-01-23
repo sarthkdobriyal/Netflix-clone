@@ -32,11 +32,11 @@ function App() {
           }))
         }else{
           //logged out
-          dispatch(logout);
+          dispatch(logout());
         }
     })
     return unsubscribe;
-  }, [])
+  }, [dispatch])
 
 
   return (
