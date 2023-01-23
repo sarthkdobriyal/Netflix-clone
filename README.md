@@ -7,7 +7,7 @@ Features --->
 - Payment ready using the stripe payment processor
 - Users can have monthly recurring subscription
 - Using Firestore database by firebase
-- Using Stripe payment webhooks to autoamtically keep track user subscription and their records in the database
+- Using Stripe payment webhooks to automatically keep track user subscription and their records in the database
 
 Tech Stack :-
 - ReactJS
@@ -16,3 +16,4 @@ Tech Stack :-
 - payments using stripe
 - authentication using firebase
 - TMDB api for movie information
+- React-router for switching to different screens
