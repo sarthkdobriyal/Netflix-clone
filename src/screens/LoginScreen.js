@@ -11,7 +11,7 @@ function LoginScreen() {
 
   return (
     <div className='loginScreen'>
-        <div class="loginScreen__backround">
+        <div className="loginScreen__backround">
             <img className='loginScreen__logo' src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="" />
 
             <button className='loginScreen__button' onClick={() => setSignIn(true)}>Sign In</button>
@@ -31,7 +31,7 @@ function LoginScreen() {
                     <h3>
                         Ready to watch? Enter your email to create or restart your membership
                     </h3>
-                    <div class="loginScreen__input">
+                    <div className="loginScreen__input">
                         <form>
                             <input type="email" placeholder='Email address' />
                             <button className="loginScreen__getStarted" onClick={() => setSignIn(true)}>GET STARTED</button>
