@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import "./Plans.css"
 import db from '../firebase';
-import { collection, query, getDocs, where } from "firebase/firestore"; 
+import { collection, query, getDocs, where, doc } from "firebase/firestore"; 
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import {  addDoc, onSnapshot } from 'firebase/firestore';
+import { loadStripe } from "@stripe/stripe-js"
+
 
 function Plans() {
 
     const [products , setProducts] = useState([]);
+
+    const user = useSelector(selectUser);
 
     useEffect(async() => {
         //getting reference to the collection "products"
@@ -33,11 +40,53 @@ function Plans() {
         setProducts(products);
     }, [])
 
-    console.log(products);
+    // console.log(products);
+
+    const loadCheckout = async(priceId) => {
+        console.log("inside loadCheckout" , user.uid)
+        const docRef =  await addDoc(collection(db,"customers",user.uid,"checkout_sessions"), {
+            price: priceId,
+            success_url: window.location.origin,
+            cancel_url: window.location.origin,
+          });
+        onSnapshot(docRef, async(snap) => {
+            console.log(`Isidd snapchot ${snap.data()}`)
+            const { error, sessionId } = snap.data();
+
+            if(error){
+                //show an error to your customer and
+                // inspect your cloud function logs in the firebase console.
+                alert(`An error ocurred: ${error.message}` );
+            }
+            if(sessionId){
+                //we have a session , lets redirect to checkout
+                // init stripe
+                const stripe = await loadStripe('pk_test_51MTenuSB5JndFedGyRxF3pJgPpkPUbvhkmFfLhEAYoaZj8QJP6HtlaYnBVICCASTVY1RVt2NHY00KI3yHIiMUbp700z9cqjcHi')
+                stripe.redirectToCheckout({ sessionId })
+            }
+        })
+    }
 
   return (
     <div className='plans'>
-        
+        {
+            //mapping over an object-- it gives back an array
+            Object.entries(products).map((product) => {
+                //add some logic to check if user subscription is active
+
+                return (
+                    <div className="plans__plan">
+                        <div className="plans__info">
+                            <h5>{product[1].name}</h5>
+                            <h6>{product[1].description}</h6>
+                        </div>
+                        <button onClick={() => loadCheckout(product[1].prices.priceId)} className='plans__button'>
+                            Subscribe
+                        </button>
+                    </div>
+                );
+            })
+        }
     </div>
   )
 }

@@ -7,9 +7,9 @@
 .profileScreen__body{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
-    padding-top: 8%;
+    padding-top: 4%;
     max-width: 800px;
 }
 
@@ -49,6 +49,7 @@
     width: 100%;
     margin-top: 5%;
     cursor: pointer;
+    font-size: 18px;
 }
 .profileScreen__plans{
     margin-top: 20px;
@@ -58,4 +59,21 @@
     border-bottom: 1px solid #282c2d;
     padding-bottom: 10px;
     
+}
+
+@media screen and (max-width:768px) {
+    .profileScreen__info > img{
+        height: 50px;
+    }
+    
+    .profileScreen__body > h1{
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+    .profileScreen__body{
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 15%;
+    }
+
 }

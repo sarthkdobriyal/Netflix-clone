@@ -1,0 +1,32 @@
+.plans__plan{
+display: flex;
+justify-content: space-between;
+padding: 10px;
+opacity: 0.5;
+}
+
+.plans__plan:hover{
+    opacity: 1;
+}
+.plans__button{
+    padding: 0 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #e50914;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.plans__info{
+    margin: 4px;
+}
+.plans__info > h5{
+    font-size: 20px;
+}
+
+.plans__info > h6{
+    font-weight: 200;
+    font-size: 12px;
+}
