@@ -18,12 +18,22 @@ function Plans() {
 
 
     useEffect(async() => {
-        const colRef = collection(db, "users", user.uid, "subscriptions");
-        const q = query(colRef);
-        const qSnap = await getDocs(q);
-        console.log(qSnap);
-        // const docRef = getDoc(colRef);
+        const colRef = collection(db, "customers", user.uid, "subscriptions");
+        
+        const qSnapshots = await getDocs(colRef);
+
+        qSnapshots.forEach(async(subscription) => {
+            setSubscription({
+                role: subscription.data().role,
+                current_period_end: subscription.data().current_period_end.seconds,
+                current_period_start: subscription.data().current_period_start.seconds,
+            })
+        })
+        
+        
     }, [])
+
+    console.log(subscription);
 
     useEffect(async() => {
         //getting reference to the collection "products"
@@ -78,19 +88,24 @@ function Plans() {
 
   return (
     <div className='plans'>
+        {subscription && <p className='plans__date'>Renewal date : {new Date(subscription.current_period_end * 1000).toLocaleDateString()}</p>}
+
         {
             //mapping over an object-- it gives back an array
             Object.entries(products).map((product) => {
                 //add some logic to check if user subscription is active
+                const isCurrentPackage = product[1].name?.toLowerCase().includes(subscription?.role)
 
                 return (
-                    <div className="plans__plan">
+                    <div 
+                    key ={product[0]}
+                    className="plans__plan">
                         <div className="plans__info">
                             <h5>{product[1].name}</h5>
                             <h6>{product[1].description}</h6>
                         </div>
-                        <button onClick={() => loadCheckout(product[1].prices.priceId)} className='plans__button'>
-                            Subscribe
+                        <button onClick={() => { !isCurrentPackage && loadCheckout(product[1].prices.priceId)}} className={`${isCurrentPackage?"plans__curr": "plans__button"}`}>
+                            {isCurrentPackage ? 'Current Package' : "Subscribe"}
                         </button>
                     </div>
                 );

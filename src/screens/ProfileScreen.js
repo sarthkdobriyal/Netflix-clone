@@ -25,7 +25,7 @@ function ProfileScreen() {
                     <h2>{user.email}</h2>
                     <div className="profileScreen__plans">
                         <h3>
-                            Plans (Current Plan: Premium)
+                            Plans
                         </h3>
                         <Plans />
                     </div>
