@@ -1,6 +1,10 @@
 import React from 'react'
 import "./ProfileScreen.css"
+
 import Navbar from '../components/Navbar'
+import Plans from '../components/Plans'
+
+
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
 
@@ -23,7 +27,7 @@ function ProfileScreen() {
                         <h3>
                             Plans (Current Plan: Premium)
                         </h3>
-
+                        <Plans />
                     </div>
                     <button onClick={() => signOut(auth)} className='profileScreen__signout'>Sign out</button>
                 </div>

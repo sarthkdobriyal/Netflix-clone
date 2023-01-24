@@ -1,5 +1,4 @@
 import instance from '../axios';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import "./Banner.css"
 import requests from '../Requests';
@@ -10,17 +9,17 @@ function Banner() {
 
     const [movie, setMovie] = useState([]);
 
-    async function fetchData(){
-        const request = await instance.get(requests.fetchNetflixOriginals);
-            setMovie(
-            request.data.results[
-                Math.floor(Math.random() * request.data.results.length -1)
-            ]
-        )
-        return request;
-    }
-
+    
     useEffect(() => {
+        async function fetchData(){
+            const request = await instance.get(requests.fetchNetflixOriginals);
+                setMovie(
+                request.data.results[
+                    Math.floor(Math.random() * request.data.results.length -1)
+                ]
+            )
+            return request;
+        }
         fetchData();
     }, []);
 
