@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./Plans.css"
 import db from '../firebase';
-import { collection, query, getDocs, where, doc } from "firebase/firestore"; 
+import { collection, query, getDocs, where, getDoc, doc } from "firebase/firestore"; 
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import {  addDoc, onSnapshot } from 'firebase/firestore';
@@ -13,6 +13,17 @@ function Plans() {
     const [products , setProducts] = useState([]);
 
     const user = useSelector(selectUser);
+
+    const [ subscription, setSubscription] = useState(null)
+
+
+    useEffect(async() => {
+        const colRef = collection(db, "users", user.uid, "subscriptions");
+        const q = query(colRef);
+        const qSnap = await getDocs(q);
+        console.log(qSnap);
+        // const docRef = getDoc(colRef);
+    }, [])
 
     useEffect(async() => {
         //getting reference to the collection "products"
@@ -43,14 +54,12 @@ function Plans() {
     // console.log(products);
 
     const loadCheckout = async(priceId) => {
-        console.log("inside loadCheckout" , user.uid)
         const docRef =  await addDoc(collection(db,"customers",user.uid,"checkout_sessions"), {
             price: priceId,
             success_url: window.location.origin,
             cancel_url: window.location.origin,
           });
         onSnapshot(docRef, async(snap) => {
-            console.log(`Isidd snapchot ${snap.data()}`)
             const { error, sessionId } = snap.data();
 
             if(error){

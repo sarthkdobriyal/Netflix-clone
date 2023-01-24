@@ -17,3 +17,8 @@ Tech Stack :-
 - authentication using firebase
 - TMDB api for movie information
 - React-router for switching to different screens
+
+
+---------------------------------
+- inside stripe payment demo
+card no - 4242 4242 4242 4242
