@@ -1,6 +1,6 @@
 # Netflix-clone
-A netflix app clone with ReactJS and other functionalities
-Features ---> 
+This is a Netflix clone app built with ReactJS, Redux, and CSS. It has a beautiful UI/UX, allows users to login/signup using email/password, fetches movie data from the TMDB API, and has Stripe payment integration for monthly recurring subscriptions. Authentication is done using Firebase, and the app uses Firestore database for storing user data. It also utilizes Stripe payment webhooks for automatic subscription tracking and database record-keeping. React-router is used for switching between different screens.
+# Features 
 - A beautiful UI/UX just like netflix
 - Login/Logout and signup using email/password
 - Recieves movie data from tmdb api
@@ -9,7 +9,7 @@ Features --->
 - Using Firestore database by firebase
 - Using Stripe payment webhooks to automatically keep track of user subscriptions and their records in the database
 
-Tech Stack :-
+# Tech Stack 
 - ReactJS for building the front-end of the app.
 - CSS for styling and creating beautiful UI/UX.
 - State management using Redux for efficient and scalable state management.
